@@ -549,6 +549,7 @@ async function runWhatsAppScenario(params: {
   driver: WhatsAppQaDriverSession;
   driverPhoneE164: string;
   gatewayDebugDirPath: string;
+  groupJid?: string;
   observedMessages: WhatsAppObservedMessage[];
   providerMode: ReturnType<typeof normalizeQaProviderMode>;
   primaryModel: string;
@@ -559,8 +560,7 @@ async function runWhatsAppScenario(params: {
   sutAccountId: string;
   sutAuthDir: string;
   sutPhoneE164: string;
-  groupJid?: string;
-}) {
+}): Promise<WhatsAppQaScenarioResult> {
   const scenarioRun = params.scenario.buildRun();
   if (scenarioRun.target === "group" && !params.groupJid) {
     throw new Error(`WhatsApp scenario ${params.scenario.id} requires groupJid.`);
